@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import heapq
+import re
 
 class Movie:
     def __init__(self, title, year, runtime, rating, description):
@@ -58,7 +59,7 @@ def get_movies(genre = 'comedy'):
             #This cuts the number of people out of the rating
             rating = m.find('span', class_='ipc-rating-star ipc-rating-star--base ipc-rating-star--imdb ratingGroup--imdb-rating').text[:3]
             #Creates the movie object
-            movie = Movie(m.h3.text[4:], yra[0], yra[1], rating, m.find('div', class_='ipc-html-content-inner-div').text)
+            movie = Movie(m.h3.text, yra[0], yra[1], rating, m.find('div', class_='ipc-html-content-inner-div').text)
 
             #print(f"{movie.title} : {movie.year} : {movie.rating} : {movie.runtime}\n {movie.desc}")
 
