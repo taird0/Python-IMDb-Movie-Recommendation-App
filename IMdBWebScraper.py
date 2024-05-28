@@ -32,8 +32,6 @@ class MaxHeap:
          return len(self.heap)         
 
 
-
-
 def get_movies(genre = 'somethingelse'):
     #Creates our url for searching movies of user-defined genre
     url =f"https://www.imdb.com/search/title/?genres={genre}&groups=top_1000"
@@ -82,8 +80,8 @@ while True:
             best_movie = result_heap.pop()
 
             print("We recommend: ")
-            print(f'{best_movie.title} : ')
-            print(f'{best_movie.year} : {best_movie.runtime} : {str(best_movie.rating)}')
+            print(f'{best_movie.title}')
+            print(f'Released: {best_movie.year} | Runtime: {best_movie.runtime} | Rating: {str(best_movie.rating)}')
             print(f'{best_movie.desc}')
 
             usr_cont = input("Would you like to see another movie? y/n").lower()
@@ -93,9 +91,11 @@ while True:
     else:
         print("We couldn't find a movie in that genre - please enter a new one and try again")
         genre = get_genre()
+        continue
     
     usr_cont = input("Would you like to search for another Movie?")
 
     if usr_cont == 'n':
         break
+    
 print("Thanks for using my movie recommendation app - Hope you found something cool to watch!")
