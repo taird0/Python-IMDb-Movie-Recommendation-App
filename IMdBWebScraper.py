@@ -58,9 +58,9 @@ def get_movies(genre = 'comedy'):
             yra = [yra.text for yra in year_runtime_age]
             #This cuts the number of people out of the rating
             rating = m.find('span', class_='ipc-rating-star ipc-rating-star--base ipc-rating-star--imdb ratingGroup--imdb-rating').text[:3]
-            #Creates the movie object
-            movie = Movie(m.h3.text, yra[0], yra[1], rating, m.find('div', class_='ipc-html-content-inner-div').text)
-
+            #Creates the movie object #re.sub replaces the number/dot at the beginning of the movie title
+            movie = Movie(re.sub(r'^\d+\.\s+', '', m.h3.text), yra[0], yra[1], rating, m.find('div', class_='ipc-html-content-inner-div').text)
+            
             #print(f"{movie.title} : {movie.year} : {movie.rating} : {movie.runtime}\n {movie.desc}")
 
             movieHeap.push(movie) 
@@ -86,7 +86,11 @@ def get_genre():
 genres = ['action', 'adventure', 'animation', 'biography', 'comedy', 'crime', 'documentary', 'drama', 'family', 'fantasy', 'film-noir', 
           'game-show', 'history', 'horror', 'music', 'musical', 'mystery', 'news', 'romance', 'sci-fi', 'short', 'sport', 'thriller', 'war', 'western']
 
+with open('MovieGetterArt') as art:
+    print("".join(line for line in art)) 
+
 print("Welcome to my Movie Recommendation App - This movie gets the most popular movies by genre and sorts them by rating")
+
 genre = get_genre()
 
 while True:
