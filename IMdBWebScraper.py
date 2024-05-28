@@ -66,8 +66,16 @@ def get_movies(genre = 'somethingelse'):
     return movieHeap 
 
 def get_genre():
-    return input("Enter the genre of movie you want to watch!\n").lower()
+    usr_in = input("Enter the genre of movie you want to watch!\n").lower()
+    matches = [genre for genre in genres if usr_in in genre ]
+
+    if matches:
+        return  matches
+    
+    return get_genre()
          
+genres = ['action', 'adventure', 'animation', 'biography', 'comedy', 'crime', 'documentary', 'drama', 'family', 'fantasy', 'film-noir', 
+          'game-show', 'history', 'horror', 'music', 'musical', 'mystery', 'news', 'romance', 'sci-fi', 'short', 'sport', 'thriller', 'war', 'western']
 
 print("Welcome to my Movie Recommendation App - This movie gets the most popular movies by genre and sorts them by rating")
 genre = get_genre()
@@ -82,9 +90,9 @@ while True:
             print("We recommend: ")
             print(f'{best_movie.title}')
             print(f'Released: {best_movie.year} | Runtime: {best_movie.runtime} | Rating: {str(best_movie.rating)}')
-            print(f'{best_movie.desc}')
+            print(f'{best_movie.desc}\n')
 
-            usr_cont = input("Would you like to see another movie? y/n").lower()
+            usr_cont = input("Would you like to see another movie? y/n\n").lower()
 
             if usr_cont == 'n':
                 break
