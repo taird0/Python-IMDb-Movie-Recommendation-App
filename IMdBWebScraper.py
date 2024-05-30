@@ -114,7 +114,7 @@ while True:
         genre = get_genre()
         continue
     
-    usr_cont = input("Would you like to search for another Movie? y/n")
+    usr_cont = input("Would you like to search for another Movie? y/n\n")
 
     if usr_cont == 'n':
         break
