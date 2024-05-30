@@ -89,7 +89,7 @@ genres = ['action', 'adventure', 'animation', 'biography', 'comedy', 'crime', 'd
 with open('MovieGetterArt') as art:
     print("".join(line for line in art)) 
 
-print("Welcome to my Movie Recommendation App - This movie gets the most popular movies by genre and sorts them by rating")
+print("Welcome to my Movie Recommendation App - This app gets the most popular movies by genre and sorts them by rating")
 
 genre = get_genre()
 
